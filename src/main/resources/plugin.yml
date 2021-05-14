@@ -1,0 +1,26 @@
+name: ThornyaPlugin
+version: ${project.version}
+main: thornyaplugin.thornyaplugin.ThornyaPlugin
+api-version: 1.16
+authors: [ Gusttavo13 ]
+description: Plugin que faz tudo
+website: https://thornya.club
+softdepend:
+  - SimpleClans
+  - Essentials
+depend:
+  - SimpleClans
+  - Essentials
+commands:
+  thornya:
+    description: comandos gerais do thornya
+  clans:
+    description: comando dos clans
+  leis:
+    description: comando das leis da prefeitura
+  prefeitura:
+    description: comando da prefeitura
+  taxa:
+    description: taxas do server
+  pagar:
+    description: pagar jogadores
