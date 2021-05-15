@@ -198,13 +198,13 @@ public class Mysql {
     }
 
     public void loadMysql() {
-        if (pl.getFile("configuration.yml").getBoolean("mysql.enable")) {
+        if (pl.getFile("configuration").getBoolean("mysql.enable")) {
             ssl = "false";
-            host = pl.getFile("configuration.yml").getString("mysql.host");
-            database = pl.getFile("configuration.yml").getString("mysql.database");
-            username = pl.getFile("configuration.yml").getString("mysql.username");
-            port = pl.getFile("configuration.yml").getInt("mysql.port");
-            password = pl.getFile("configuration.yml").getString("mysql.password");
+            host = pl.getFile("configuration").getString("mysql.host");
+            database = pl.getFile("configuration").getString("mysql.database");
+            username = pl.getFile("configuration").getString("mysql.username");
+            port = pl.getFile("configuration").getInt("mysql.port");
+            password = pl.getFile("configuration").getString("mysql.password");
             try {
                 if (getConnect() != null && !getConnect().isClosed()) {
                     return;

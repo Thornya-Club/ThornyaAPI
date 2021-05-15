@@ -1,24 +1,18 @@
 package thornyaplugin.thornyaplugin.prefeitura.commands;
 
 import me.mattstudios.mfgui.gui.components.util.ItemBuilder;
-import me.mattstudios.mfgui.gui.guis.Gui;
 import me.mattstudios.mfgui.gui.guis.GuiItem;
 import me.mattstudios.mfgui.gui.guis.PaginatedGui;
-import me.mattstudios.mfgui.gui.guis.PersistentGui;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import thornyaplugin.thornyaplugin.ThornyaPlugin;
-import thornyaplugin.thornyaplugin.prefeitura.database.SQLite;
-import thornyaplugin.thornyaplugin.vars.leis;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Leis implements CommandExecutor {
 
@@ -30,7 +24,7 @@ public class Leis implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender snd, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
-
+            /*
         if(!(snd instanceof Player)){
             Bukkit.getConsoleSender().sendMessage("§4Comandos somente para jogadores!");
         }else {
@@ -226,6 +220,7 @@ public class Leis implements CommandExecutor {
             }
 
         }
+         */
         return false;
     }
 }

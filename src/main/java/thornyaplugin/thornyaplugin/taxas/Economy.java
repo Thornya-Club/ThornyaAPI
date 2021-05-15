@@ -1,6 +1,7 @@
 package thornyaplugin.thornyaplugin.taxas;
 import com.earth2me.essentials.api.NoLoanPermittedException;
 import com.earth2me.essentials.api.UserDoesNotExistException;
+import net.ess3.api.MaxMoneyException;
 import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
@@ -97,31 +98,31 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                         isNumber = Integer.parseInt(args[2]) >= 0;
                                     }
                                     if (isNumber) {
-                                        double numberConfigGetPrefeitura = pl.getFile("configuration.yml").getDouble("tax-prefeitura");
-                                        double numberConfigGetSupremacia = pl.getFile("configuration.yml").getDouble("tax-supremacia");
+                                        double numberConfigGetPrefeitura = pl.getFile("configuration").getDouble("tax-prefeitura");
+                                        double numberConfigGetSupremacia = pl.getFile("configuration").getDouble("tax-supremacia");
                                         int numberConfigGet;
                                         numberConfigGet = (int) (100 - ((numberConfigGetPrefeitura + numberConfigGetSupremacia) * 100));
                                         if (isInteger(Double.parseDouble(args[2]))) {
                                             int number = Integer.parseInt(args[2]);
                                             if (number == 0) {
-                                                pl.getFile("configuration.yml").set("tax-prefeitura", 0.0);
+                                                pl.getFile("configuration").set("tax-prefeitura", 0.0);
                                                 pl.saveConfig();
-                                                pl.reloadConfig("configuration.yml");
-                                                pl.translate().getStringList("tax.announce-remove-prefeitura").forEach(s -> {
+                                                pl.reloadConfig("configuration");
+                                                pl.getFile("translate").getStringList("tax.announce-remove-prefeitura").forEach(s -> {
                                                     pl.getServer().broadcastMessage(s.replace("&", "§")
                                                             .replace("$player", p.getDisplayName())
                                                             .replace("$tax", String.valueOf(number)));
                                                 });
                                             } else if (number <= numberConfigGet && number <= 5) {
                                                 double convert = number / 100.0;
-                                                pl.getFile("configuration.yml").set("tax-prefeitura", convert);
-                                                pl.translate().getStringList("tax.announce-prefeitura").forEach(s -> {
+                                                pl.getFile("configuration").set("tax-prefeitura", convert);
+                                                pl.getFile("translate").getStringList("tax.announce-prefeitura").forEach(s -> {
                                                     pl.getServer().broadcastMessage(s.replace("&", "§")
                                                             .replace("$player", p.getDisplayName())
                                                             .replace("$tax", String.valueOf(number)));
                                                 });
                                                 pl.saveConfig();
-                                                pl.reloadConfig("configuration.yml");
+                                                pl.reloadConfig("configuration");
                                             } else {
                                                 p.sendMessage("§cO taxa deve ser menor ou igual a §4" + numberConfigGet);
                                             }
@@ -129,7 +130,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                             p.sendMessage("§cO taxa deve ser menor ou igual a §4" + numberConfigGet);
                                         }
                                     } else {
-                                        p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                        p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                     }
                                 } else {
                                     p.sendMessage("§cVocê não tem permissão para isso!");
@@ -143,31 +144,31 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                         isNumber = false;
                                     }
                                     if (isNumber) {
-                                        double numberConfigGetPrefeitura = pl.getFile("configuration.yml").getDouble("tax-prefeitura");
-                                        double numberConfigGetSupremacia = pl.getFile("configuration.yml").getDouble("tax-supremacia");
+                                        double numberConfigGetPrefeitura = pl.getFile("configuration").getDouble("tax-prefeitura");
+                                        double numberConfigGetSupremacia = pl.getFile("configuration").getDouble("tax-supremacia");
                                         int numberConfigGet;
                                         numberConfigGet = (int) (100 - ((numberConfigGetPrefeitura + numberConfigGetSupremacia) * 100));
                                         if (isInteger(Double.parseDouble(args[2]))) {
                                             int number = Integer.parseInt(args[2]);
                                             if (number == 0) {
-                                                pl.getFile("configuration.yml").set("tax-supremacia", 0.0);
+                                                pl.getFile("configuration").set("tax-supremacia", 0.0);
                                                 pl.saveConfig();
-                                                pl.reloadConfig("configuration.yml");
-                                                pl.translate().getStringList("tax.announce-remove-supremacia").forEach(s -> {
+                                                pl.reloadConfig("configuration");
+                                                pl.getFile("translate").getStringList("tax.announce-remove-supremacia").forEach(s -> {
                                                     pl.getServer().broadcastMessage(s.replace("&", "§")
                                                             .replace("$player", p.getDisplayName())
                                                             .replace("$tax", String.valueOf(number)));
                                                 });
                                             } else if (number <= numberConfigGet && number <= 5) {
                                                 double convert = number / 100.0;
-                                                pl.getFile("configuration.yml").set("tax-supremacia", convert);
-                                                pl.translate().getStringList("tax.announce-supremacia").forEach(s -> {
+                                                pl.getFile("configuration").set("tax-supremacia", convert);
+                                                pl.getFile("translate").getStringList("tax.announce-supremacia").forEach(s -> {
                                                     pl.getServer().broadcastMessage(s.replace("&", "§")
                                                             .replace("$player", p.getDisplayName())
                                                             .replace("$tax", String.valueOf(number)));
                                                 });
                                                 pl.saveConfig();
-                                                pl.reloadConfig("configuration.yml");
+                                                pl.reloadConfig("configuration");
                                             } else {
                                                 p.sendMessage("§cO taxa deve ser menor ou igual a §4" + numberConfigGet);
                                             }
@@ -175,7 +176,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                             p.sendMessage("§cO taxa deve ser menor ou igual a §4" + numberConfigGet);
                                         }
                                     } else {
-                                        p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                        p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                     }
                                 } else {
                                     p.sendMessage("§cVocê não tem permissão para isso!");
@@ -190,7 +191,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                         //}else
                         if (args[0].equalsIgnoreCase("ajuda")) {
                             if (p.hasPermission("prefeitura.taxa") || p.isOp()) {
-                                pl.translate().getStringList("tax.help").forEach(s -> {
+                                pl.getFile("translate").getStringList("tax.help").forEach(s -> {
                                     p.sendMessage(s.replace("&", "§"));
                                 });
                             } else {
@@ -201,10 +202,10 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                         p.sendMessage("§cUse /taxa ajuda");
                     }
                 }else {
-                    int numberConfigGetPrefeitura = (int) (pl.getFile("configuration.yml").getDouble("tax-prefeitura") * 100);
-                    int numberConfigGetSupremacia = (int) (pl.getFile("configuration.yml").getDouble("tax-supremacia") * 100);
+                    int numberConfigGetPrefeitura = (int) (pl.getFile("configuration").getDouble("tax-prefeitura") * 100);
+                    int numberConfigGetSupremacia = (int) (pl.getFile("configuration").getDouble("tax-supremacia") * 100);
                     int taxTotal = numberConfigGetPrefeitura + numberConfigGetSupremacia;
-                    pl.translate().getStringList("tax.show-tax").forEach(s -> {
+                    pl.getFile("translate").getStringList("tax.show-tax").forEach(s -> {
                         p.sendMessage(s.replace("&", "§")
                                 .replace("$taxS", String.valueOf(numberConfigGetSupremacia))
                                 .replace("$taxP", String.valueOf(numberConfigGetPrefeitura))
@@ -239,40 +240,40 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                                     if (hasEnough(p.getUniqueId(), moneyWithTax)) {
                                                         subtract(p.getUniqueId(), moneyWithTax);
                                                         add(target.getUniqueId(), money);
-                                                        pl.translate().getStringList("economy.paid-money").forEach(s -> {
+                                                        pl.getFile("translate").getStringList("economy.paid-money").forEach(s -> {
                                                             p.sendMessage(s.replace("&", "§")
                                                                     .replace("$taxa", format(taxa))
                                                                     .replace("$player", target.getDisplayName())
                                                                     .replace("$money", format(money)));
                                                         });
-                                                        target.sendMessage(pl.translate().getString("economy.received-money")
+                                                        target.sendMessage(pl.getFile("translate").getString("economy.received-money")
                                                                 .replace("&", "§")
                                                                 .replace("$player", p.getDisplayName())
                                                                 .replace("$money", format(money)));
                                                         pl.sqlitetaxas.updateValueClan((float) Double.parseDouble(formato.format((pl.sqlitetaxas.getValueClan().floatValue() + Double.parseDouble(formato.format(pl.tax.divideMoney(taxa.doubleValue(), "clan")))))));
                                                         pl.sqlitetaxas.updateValuePrefeitura((float) Double.parseDouble(formato.format((pl.sqlitetaxas.getValuePrefeitura().floatValue() + Double.parseDouble(formato.format(pl.tax.divideMoney(taxa.doubleValue(), "pf")))))));
                                                     } else {
-                                                        pl.translate().getStringList("economy.dont-have-money").forEach(s -> {
+                                                        pl.getFile("translate").getStringList("economy.dont-have-money").forEach(s -> {
                                                             p.sendMessage(s.replace("&", "§")
                                                                     .replace("$total", format(moneyWithTax))
                                                                     .replace("$taxa", format(taxa)));
                                                         });
                                                     }
                                                 } else {
-                                                    p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                                    p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                                 }
                                             } else {
-                                                p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                                p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                             }
-                                        } catch (UserDoesNotExistException | NoLoanPermittedException e) {
+                                        } catch (UserDoesNotExistException | NoLoanPermittedException | MaxMoneyException e) {
                                             e.printStackTrace();
                                         }
 
                                     } else {
-                                        p.sendMessage(pl.translate().getString("economy.pay-yourself").replace("&", "§"));
+                                        p.sendMessage(pl.getFile("translate").getString("economy.pay-yourself").replace("&", "§"));
                                     }
                                 } else {
-                                    p.sendMessage(pl.translate().getString("economy.player-not-found").replace("&", "§"));
+                                    p.sendMessage(pl.getFile("translate").getString("economy.player-not-found").replace("&", "§"));
                                     return true;
                                 }
                             } else {
@@ -293,7 +294,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                                     if (hasEnough(p.getUniqueId(), moneyWithTax)) {
                                                         subtract(p.getUniqueId(), moneyWithTax);
                                                         add(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), money);
-                                                        pl.translate().getStringList("economy.paid-money").forEach(s -> {
+                                                        pl.getFile("translate").getStringList("economy.paid-money").forEach(s -> {
                                                             p.sendMessage(s.replace("&", "§")
                                                                     .replace("$taxa", format(taxa))
                                                                     .replace("$player", target.getDisplayName())
@@ -302,27 +303,27 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                                         pl.sqlitetaxas.updateValueClan((float) Double.parseDouble(formato.format((pl.sqlitetaxas.getValueClan().floatValue() + Double.parseDouble(formato.format(pl.tax.divideMoney(taxa.doubleValue(), "clan")))))));
                                                         pl.sqlitetaxas.updateValuePrefeitura((float) Double.parseDouble(formato.format((pl.sqlitetaxas.getValuePrefeitura().floatValue() + Double.parseDouble(formato.format(pl.tax.divideMoney(taxa.doubleValue(), "pf")))))));
                                                     } else {
-                                                        pl.translate().getStringList("economy.dont-have-money").forEach(s -> {
+                                                        pl.getFile("translate").getStringList("economy.dont-have-money").forEach(s -> {
                                                             p.sendMessage(s.replace("&", "§")
                                                                     .replace("$total", format(moneyWithTax))
                                                                     .replace("$taxa", format(taxa)));
                                                         });
                                                     }
                                                 } else {
-                                                    p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                                    p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                                 }
                                             } else {
-                                                p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                                p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                             }
-                                        } catch (UserDoesNotExistException | NoLoanPermittedException e) {
+                                        } catch (UserDoesNotExistException | NoLoanPermittedException | MaxMoneyException e) {
                                             e.printStackTrace();
                                         }
 
                                     } else {
-                                        p.sendMessage(pl.translate().getString("economy.player-not-found").replace("&", "§"));
+                                        p.sendMessage(pl.getFile("translate").getString("economy.player-not-found").replace("&", "§"));
                                     }
                                 }else{
-                                    p.sendMessage(pl.translate().getString("economy.player-not-online").replace("&", "§"));
+                                    p.sendMessage(pl.getFile("translate").getString("economy.player-not-online").replace("&", "§"));
                                 }
                             }
                         } else {
@@ -344,7 +345,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                                     if (hasEnough(p.getUniqueId(), moneyWithTax)) {
                                                         subtract(p.getUniqueId(), moneyWithTax);
                                                         add(player.getUniqueId(), money);
-                                                        pl.translate().getStringList("economy.paid-money").forEach(s -> {
+                                                        pl.getFile("translate").getStringList("economy.paid-money").forEach(s -> {
                                                             p.sendMessage(s.replace("&", "§")
                                                                     .replace("$taxa", format(taxa))
                                                                     .replace("$player", player.getDisplayName())
@@ -352,12 +353,12 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                                         });
                                                         pl.sqlitetaxas.updateValueClan((float) Double.parseDouble(formato.format((pl.sqlitetaxas.getValueClan().floatValue() + Double.parseDouble(formato.format(pl.tax.divideMoney(taxa.doubleValue(), "clan")))))));
                                                         pl.sqlitetaxas.updateValuePrefeitura((float) Double.parseDouble(formato.format((pl.sqlitetaxas.getValuePrefeitura().floatValue() + Double.parseDouble(formato.format(pl.tax.divideMoney(taxa.doubleValue(), "pf")))))));
-                                                        player.sendMessage(pl.translate().getString("economy.received-money")
+                                                        player.sendMessage(pl.getFile("translate").getString("economy.received-money")
                                                                 .replace("&", "§")
                                                                 .replace("$player", p.getDisplayName())
                                                                 .replace("$money", format(money)));
                                                     } else {
-                                                        pl.translate().getStringList("economy.dont-have-money").forEach(s -> {
+                                                        pl.getFile("translate").getStringList("economy.dont-have-money").forEach(s -> {
                                                             p.sendMessage(s.replace("&", "§")
                                                                     .replace("$total", format(moneyWithTax))
                                                                     .replace("$taxa", format(taxa)));
@@ -365,14 +366,14 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
                                                         break;
                                                     }
                                                 } else {
-                                                    p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                                    p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                                     break;
                                                 }
                                             } else {
-                                                p.sendMessage(pl.translate().getString("economy.invalid-number").replace("&", "§"));
+                                                p.sendMessage(pl.getFile("translate").getString("economy.invalid-number").replace("&", "§"));
                                                 break;
                                             }
-                                        } catch (UserDoesNotExistException | NoLoanPermittedException e) {
+                                        } catch (UserDoesNotExistException | NoLoanPermittedException | MaxMoneyException e) {
                                             e.printStackTrace();
                                         }
                                     }

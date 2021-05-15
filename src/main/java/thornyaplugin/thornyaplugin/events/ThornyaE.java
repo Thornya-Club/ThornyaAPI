@@ -21,10 +21,8 @@ public class ThornyaE implements Listener {
 
     private ThornyaPlugin pl;
 
-
     public ThornyaE(ThornyaPlugin pl) {
         this.pl = pl;
-        pl.staff.staffDetect();
     }
     /*
     @EventHandler
@@ -33,7 +31,7 @@ public class ThornyaE implements Listener {
         String group = pl.ess.getUser(p).getGroup();
         if(p.getName().equalsIgnoreCase("Gusttavo13")){
             final BukkitMessage message = BukkitMessage.create();
-            final MessageComponent component = message.parse(pl.getFile("configuration.yml").getString("tag") + event.getMessage());
+            final MessageComponent component = message.parse(pl.getFile("configuration").getString("tag") + event.getMessage());
             event.setMessage(component.toString());
         }
         if(event.getMessage().contains("Gusttavo13") || event.getMessage().contains("gusttavo13")){

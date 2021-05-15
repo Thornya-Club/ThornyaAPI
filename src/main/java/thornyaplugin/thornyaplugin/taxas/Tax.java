@@ -12,8 +12,8 @@ public class Tax {
 
     public Tax(ThornyaPlugin pl){
         this.pl = pl;
-        this.taxValue = pl.getFile("configuration.yml").getDouble("tax-prefeitura");
-        this.taxClan = pl.getFile("configuration.yml").getDouble("tax-supremacia");
+        this.taxValue = pl.getFile("configuration").getDouble("tax-prefeitura");
+        this.taxClan = pl.getFile("configuration").getDouble("tax-supremacia");
         this.taxTotal = this.taxValue + this.taxClan;
     }
     public Double taxValue(Double money){

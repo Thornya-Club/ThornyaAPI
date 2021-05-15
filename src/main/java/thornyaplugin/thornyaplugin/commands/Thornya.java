@@ -43,49 +43,19 @@ public class Thornya implements CommandExecutor {
                 Player p = (Player) snd;
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("reload")) {
-                        pl.reloadConfig("configuration.yml");
-                        pl.reloadConfigP();
-                        pl.staff.staffDetect();
-                        pl.leisVar.updateLeis();
-                        pl.sqlLeis.updateLeis();
+                        pl.reloadConfig("configuration");
+                        pl.reloadConfig("prefeitura");
                         pl.candidatosVar.updateCandidatos();
-                        p.sendMessage(pl.getFile("configuration.yml").getString("message_reload").replace("&", "§"));
+                        p.sendMessage(pl.getFile("configuration").getString("message_reload").replace("&", "§"));
                     } else if (args[0].equalsIgnoreCase("limparchat")) {
                         int i = 0;
                         while (i < 100) {
                             Bukkit.getServer().broadcastMessage(" ");
                             i++;
                         }
-                        Bukkit.broadcastMessage(pl.getFile("configuration.yml").getString("message_clearchat").replace("%player%", p.getName()).replace("&", "§"));
+                        Bukkit.broadcastMessage(pl.getFile("configuration").getString("message_clearchat").replace("%player%", p.getName()).replace("&", "§"));
                     } else if (args[0].equalsIgnoreCase("enviarplayerdatabase")) {
                         p.sendMessage("§4COMANDO SOMENTE PELO CONSOLE!");
-
-                    } else if (args[0].equalsIgnoreCase("aceitar")) {
-                        if (pl.sqliv.hasNick(p.getName())) {
-                            if (!pl.sqliv.hasVerifyNick(p.getName())) {
-                                String idDiscord = pl.sqliv.getIdDiscord(p.getName());
-                                pl.sqliv.updatePlayerVerify(p.getName());
-                                pl.sendEmbedVerificado(p.getName());
-                                pl.sendMessageInformando(pl.getUserName(), p.getName(), true);
-                            } else {
-                                p.sendMessage("§cVocê já é verificado!");
-                            }
-                        } else {
-                            p.sendMessage("§cVocê não nenhuma solicitação!");
-                        }
-
-                    } else if (args[0].equalsIgnoreCase("negar")) {
-                        if (pl.sqliv.hasNick(p.getName())) {
-                            if (!pl.sqliv.hasVerifyNick(p.getName())) {
-                                pl.sendEmbedNegado(p.getName());
-                                pl.sendMessageInformando(pl.getUserName(), p.getName(), false);
-                                pl.sqliv.deletePlayerNick(p.getName());
-                            } else {
-                                p.sendMessage("§cVocê já é verificado!");
-                            }
-                        } else {
-                            p.sendMessage("§cVocê não nenhuma solicitação!");
-                        }
                     } else {
                         p.sendMessage("§cEsse comando não existe!");
                     }
@@ -109,7 +79,7 @@ public class Thornya implements CommandExecutor {
                 } else {
                     p.sendMessage("§cEsse comando não existe!");
                 }
-
+            }
             }else{
                 if (args[0].equalsIgnoreCase("enviarplayerdatabase")) {
                     if (Bukkit.getServer().getOnlinePlayers().size() > 0) {
@@ -148,8 +118,6 @@ public class Thornya implements CommandExecutor {
                 }
 
             }
-
-        }
         return false;
     }
 }

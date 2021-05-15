@@ -4,53 +4,41 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ThornyaPlugin</groupId>
-    <artifactId>ThornyaPlugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>ThornyaAPI</groupId>
+    <artifactId>ThornyaAPI</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>ThornyaPlugin</name>
+    <name>ThornyaAPI</name>
 
     <description>PluginIntegration</description>
     <properties>
-        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <author>Gusttavo13</author>
     </properties>
     <url>https://thornya.club</url>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <outputFile>C:\Users\Gusttavo13\Desktop\ThornyaPlugin.jar</outputFile>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <finalName>${project.name} - DEV 1 (v${project.version})</finalName>
+        <defaultGoal>clean package</defaultGoal>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}</directory>
+
+                <includes>
+                    <include>LICENSE</include>
+                </includes>
             </resource>
         </resources>
     </build>
@@ -85,6 +73,19 @@
             <id>quickshop-repo</id>
             <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
+		<repository>
+			<id>essentials-snapshots</id>
+			<url>https://repo.essentialsx.net/snapshots/</url>
+		</repository>
+        <repository>
+            <id>paper-repo</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>dv8tion</id>
+            <name>m2-dv8tion</name>
+            <url>https://m2.dv8tion.net/releases</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -108,33 +109,37 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.4-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
-            <version>4.2.0_227</version>
-            <scope>compile</scope>
-        </dependency>
+			<groupId>net.dv8tion</groupId>
+			<artifactId>JDA</artifactId>
+			<version>4.2.1_253</version>
+			<exclusions>
+				<exclusion>
+					<groupId>club.minnced</groupId>
+					<artifactId>opus-java</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>net.sacredlabyrinth.phaed.simpleclans</groupId>-->
-<!--            <artifactId>SimpleClans</artifactId>-->
-<!--            <version>2.14.5</version> &lt;!&ndash; You can find the latest version at the bottom &ndash;&gt;-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>essentials</groupId>-->
-<!--            <artifactId>essentials</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>2.18.2.0</version>-->
-<!--            <systemPath>C:/Users/Gusttavo13/Desktop/Servidor/plugins/EssentialsX-2.18.2.0.jar</systemPath>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>net.sacredlabyrinth.phaed.simpleclans</groupId>
+            <artifactId>SimpleClans</artifactId>
+            <version>2.14.5</version> <!-- You can find the latest version at the bottom -->
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
+			<groupId>net.essentialsx</groupId>
+			<artifactId>EssentialsX</artifactId>
+			<version>2.19.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>        
     </dependencies>
 </project>

@@ -38,14 +38,14 @@ public class Prefeitura implements CommandExecutor {
                 }else {
                     if (args.length == 1) {
                         if (args[0].equalsIgnoreCase("votar")) {
-                            if (Objects.requireNonNull(pl.getFileP().getString("votacao.estado")).equalsIgnoreCase("Ativada")) {
+                            if (Objects.requireNonNull(pl.getFile("prefeitura").getString("votacao.estado")).equalsIgnoreCase("Ativada")) {
                                 if (!pl.sqlLeis.hasVoted(p.getName())) {
-                                    Gui guivote = new Gui(6, Objects.requireNonNull(pl.getFileP().getString("GUI.nome")).replace("&", "§"));
+                                    Gui guivote = new Gui(6, Objects.requireNonNull(pl.getFile("prefeitura").getString("GUI.nome")).replace("&", "§"));
                                     ArrayList<String> ITEM_INFO = new ArrayList();
-                                    pl.getFileP().getStringList("GUI.ITEM_INFO.lore").forEach(s1 -> {
+                                    pl.getFile("prefeitura").getStringList("GUI.ITEM_INFO.lore").forEach(s1 -> {
                                         ITEM_INFO.add(s1.replace("&", "§"));
                                     });
-                                    GuiItem info = ItemBuilder.from(Material.PAPER).setName(pl.getFileP().getString("GUI.ITEM_INFO.nome").replace("&", "§")).setLore(ITEM_INFO).asGuiItem(event -> guivote.close(p));
+                                    GuiItem info = ItemBuilder.from(Material.PAPER).setName(pl.getFile("prefeitura").getString("GUI.ITEM_INFO.nome").replace("&", "§")).setLore(ITEM_INFO).asGuiItem(event -> guivote.close(p));
                                     guivote.setDefaultClickAction(event -> {
                                         event.setCancelled(true);
                                         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)
@@ -60,10 +60,10 @@ public class Prefeitura implements CommandExecutor {
                                     ArrayList<String> ITEM_CANDIDATO = new ArrayList();
                                     AtomicInteger listSize = new AtomicInteger(1);
                                     pl.candidatosVar.candidatos.forEach((candidatoName, aBoolean) -> {
-                                        pl.getFileP().getStringList("GUI.ITEM_CANDIDATO.lore").forEach(s1 -> {
+                                        pl.getFile("prefeitura").getStringList("GUI.ITEM_CANDIDATO.lore").forEach(s1 -> {
                                             ITEM_CANDIDATO.add(s1.replace("&", "§").replace("$candidato$", candidatoName));
                                         });
-                                        GuiItem candidato = ItemBuilder.from(Material.GOLDEN_HELMET).setName(pl.getFileP().getString("GUI.ITEM_CANDIDATO.nome").replace("&", "§").replace("$candidato$", candidatoName)).setLore(ITEM_CANDIDATO).asGuiItem(event -> {
+                                        GuiItem candidato = ItemBuilder.from(Material.GOLDEN_HELMET).setName(pl.getFile("prefeitura").getString("GUI.ITEM_CANDIDATO.nome").replace("&", "§").replace("$candidato$", candidatoName)).setLore(ITEM_CANDIDATO).asGuiItem(event -> {
                                             if (event.isLeftClick() || event.isRightClick() || event.isShiftClick()) {
                                                 if (pl.sqlLeis.hasVoted(p.getName())) {
                                                     guivote.close(p);
@@ -175,8 +175,6 @@ public class Prefeitura implements CommandExecutor {
                                         listSize.getAndIncrement();
                                     });
 
-
-                                    //criar while sem o total de itens
                                     guivote.setItem(1, 5, info);
                                     guivote.open(p);
                                 }else{
@@ -211,10 +209,10 @@ public class Prefeitura implements CommandExecutor {
 
                         }else if (args[0].equalsIgnoreCase("ativar")){
                             if(p.isOp()){
-                                if(!pl.getFileP().getString("votacao.estado").equalsIgnoreCase("Ativada")){
-                                    pl.getFileP().set("votacao.estado", "Ativada");
+                                if(!pl.getFile("prefeitura").getString("votacao.estado").equalsIgnoreCase("Ativada")){
+                                    pl.getFile("prefeitura").set("votacao.estado", "Ativada");
                                     pl.saveConfig();
-                                    pl.reloadConfigP();
+                                    pl.reloadConfig("prefeitura");
                                     p.sendMessage("§aVotações iniciada!");
                                 }else{
                                     p.sendMessage("§cVocê não pode ativar uma eleição existente!");
@@ -222,10 +220,10 @@ public class Prefeitura implements CommandExecutor {
                             }
                         }else if (args[0].equalsIgnoreCase("desativar")){
                             if(p.isOp()){
-                                if(!pl.getFileP().getString("votacao.estado").equalsIgnoreCase("Desativada")){
-                                    pl.getFileP().set("votacao.estado", "Desativada");
+                                if(!pl.getFile("prefeitura").getString("votacao.estado").equalsIgnoreCase("Desativada")){
+                                    pl.getFile("prefeitura").set("votacao.estado", "Desativada");
                                     pl.saveConfig();
-                                    pl.reloadConfigP();
+                                    pl.reloadConfig("prefeitura");
                                     p.sendMessage("§aVotações desativada!");
                                 }else{
                                     p.sendMessage("§cVocê não pode desativar uma eleição desativada!");
@@ -233,9 +231,9 @@ public class Prefeitura implements CommandExecutor {
                             }
                         }else if (args[0].equalsIgnoreCase("reiniciar")){
                             if(p.isOp()){
-                                if(pl.getFileP().getString("votacao.estado").equalsIgnoreCase("Desativada")){
+                                if(pl.getFile("prefeitura").getString("votacao.estado").equalsIgnoreCase("Desativada")){
                                     pl.sqlLeis.restartVotes();
-                                    pl.reloadConfigP();
+                                    pl.reloadConfig("prefeitura");
                                     pl.candidatosVar.updateCandidatos();
                                     p.sendMessage("§bEleições reiniciada com sucesso!");
                                 }else{

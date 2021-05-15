@@ -4,6 +4,7 @@
 #Quando for usar o /prefeitura reiniciar
 #Coloque o nome dos novos candidatos antes, depois use o /prefeitura reiniciar
 #Quando for reiniciado, inicie as eleições!
+#Qualquer problema use /prefeitura reload
 
 votacao:
   #Ativada ou Desativada
@@ -11,7 +12,7 @@ votacao:
   #max 8 candidatos
   candidatos:
     - "Gusttavo13"
-    - "pripri2210"
+    - "Especttra"
     - "Teste1"
     - "Teste2"
     - "Teste3"

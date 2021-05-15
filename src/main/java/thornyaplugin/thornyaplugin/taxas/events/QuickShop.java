@@ -25,7 +25,7 @@ public class QuickShop implements Listener {
         if (e.getShop().getShopType() == ShopType.BUYING) {
             e.getShop().isUnlimited();
             if (e.getShop().ownerName().equals(e.getPlayer().getName())) {
-                e.getPlayer().sendMessage(Objects.requireNonNull(pl.translate().getString("no-tax").replace("&", "§")));
+                e.getPlayer().sendMessage(Objects.requireNonNull(pl.getFile("translate").getString("no-tax").replace("&", "§")));
             } else {
                 DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
                 DecimalFormat formato = new DecimalFormat("####.##", symbols);
@@ -58,7 +58,7 @@ public class QuickShop implements Listener {
     public void TaxPreSell(ShopPurchaseEvent e) {
         if (e.getShop().getShopType() == ShopType.SELLING) {
             if (e.getShop().ownerName().equals(e.getPlayer().getName())) {
-                e.getPlayer().sendMessage(Objects.requireNonNull(pl.translate().getString("no-tax").replace("&", "§")));
+                e.getPlayer().sendMessage(Objects.requireNonNull(pl.getFile("translate").getString("no-tax").replace("&", "§")));
             } else {
                 DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
                 DecimalFormat formato = new DecimalFormat("####.##", symbols);
@@ -68,7 +68,7 @@ public class QuickShop implements Listener {
                 double balance = pl.ess.getUser(e.getPlayer().getPlayer()).getMoney().doubleValue();
                 double taxtotal = taxValueUnique * e.getAmount();
                 if (Tax.hasMoney(balance, taxValue)) {
-                    for (String msg : pl.translate().getStringList("success-buy")) {
+                    for (String msg : pl.getFile("translate").getStringList("success-buy")) {
                         e.getPlayer().sendMessage(msg
                                 .replace("&", "§")
                                 .replace("$tax$", String.valueOf(formato.format(taxValueUnique)))
@@ -86,7 +86,7 @@ public class QuickShop implements Listener {
 
                 } else {
                     e.setCancelled(true);
-                    for (String msg : pl.translate().getStringList("no-have-money-buy")) {
+                    for (String msg : pl.getFile("translate").getStringList("no-have-money-buy")) {
                         e.getPlayer().sendMessage(msg
                                 .replace("&", "§")
                                 .replace("$tax$", String.valueOf(formato.format(taxValueUnique)))

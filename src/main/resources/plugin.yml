@@ -1,9 +1,9 @@
-name: ThornyaPlugin
+name: ThornyaAPI
 version: ${project.version}
 main: thornyaplugin.thornyaplugin.ThornyaPlugin
 api-version: 1.16
 authors: [ Gusttavo13 ]
-description: Plugin que faz tudo
+description: Plugin integration Thornya
 website: https://thornya.club
 softdepend:
   - SimpleClans
@@ -14,8 +14,6 @@ depend:
 commands:
   thornya:
     description: comandos gerais do thornya
-  clans:
-    description: comando dos clans
   leis:
     description: comando das leis da prefeitura
   prefeitura:

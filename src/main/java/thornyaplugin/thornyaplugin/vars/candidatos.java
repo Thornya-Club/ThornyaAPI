@@ -16,9 +16,9 @@ public class candidatos {
     }
 
     public void updateCandidatos(){
-        if(!pl.getFileP().getStringList("votacao.candidatos").isEmpty()){
+        if(!pl.getFile("prefeitura").getStringList("votacao.candidatos").isEmpty()){
             candidatos.clear();
-            for (String str : pl.getFileP().getStringList("votacao.candidatos")){
+            for (String str : pl.getFile("prefeitura").getStringList("votacao.candidatos")){
                 this.candidatos.put(str, false);
             }
         }
