@@ -17,6 +17,8 @@ dependency-reduced-pom.xml
 # BlueJ files
 *.ctxt
 
+.iml
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

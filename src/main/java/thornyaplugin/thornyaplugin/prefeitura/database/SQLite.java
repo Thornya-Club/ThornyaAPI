@@ -7,7 +7,7 @@ import java.sql.*;
 public class SQLite {
 
     private final ThornyaPlugin pl;
-    String urlVotos = null;
+    private String urlVotos = null;
 
     public SQLite(ThornyaPlugin main){
         this.pl = main;

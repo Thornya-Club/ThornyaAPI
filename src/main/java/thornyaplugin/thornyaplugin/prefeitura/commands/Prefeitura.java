@@ -59,7 +59,7 @@ public class Prefeitura implements CommandExecutor {
                                     });
                                     ArrayList<String> ITEM_CANDIDATO = new ArrayList();
                                     AtomicInteger listSize = new AtomicInteger(1);
-                                    pl.candidatosVar.candidatos.forEach((candidatoName, aBoolean) -> {
+                                    pl.candidatosVar.candidatos.forEach(candidatoName -> {
                                         pl.getFile("prefeitura").getStringList("GUI.ITEM_CANDIDATO.lore").forEach(s1 -> {
                                             ITEM_CANDIDATO.add(s1.replace("&", "§").replace("$candidato$", candidatoName));
                                         });
@@ -190,7 +190,7 @@ public class Prefeitura implements CommandExecutor {
                             if (p.hasPermission("prefeitura.votos")) {
                                 p.sendMessage("§6========[§2Votos dos Candidatos§6]========");
                                 p.sendMessage(" ");
-                                pl.candidatosVar.candidatos.forEach((s1, aBoolean) -> {
+                                pl.candidatosVar.candidatos.forEach(s1 -> {
                                     p.sendMessage("§b" + s1 + ": §a" + pl.sqlLeis.getVotes(s1));
                                 });
                                 //sql
@@ -243,7 +243,7 @@ public class Prefeitura implements CommandExecutor {
                         }else if (args[0].equalsIgnoreCase("candidatos")){
                             p.sendMessage("§6============[§2Candidatos§6]============");
                             p.sendMessage(" ");
-                            pl.candidatosVar.candidatos.forEach((s1, aBoolean) -> {
+                            pl.candidatosVar.candidatos.forEach(s1 -> {
                                 p.sendMessage("§e" + s1);
                             });
                         }else if (args[0].equalsIgnoreCase("prefeito")){

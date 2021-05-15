@@ -3,22 +3,19 @@ package thornyaplugin.thornyaplugin.commands;
 import me.mattstudios.mfmsg.base.internal.MessageComponent;
 import me.mattstudios.mfmsg.bukkit.BukkitMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.jetbrains.annotations.NotNull;
 import thornyaplugin.thornyaplugin.ThornyaPlugin;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Thornya implements CommandExecutor {
     private final ThornyaPlugin pl;
 
-    Map<String, Long> cooldowns = new HashMap<String, Long>();
+    //Map<String, Long> cooldowns = new HashMap<String, Long>();
 
     public Thornya(ThornyaPlugin pl) {
         this.pl = pl;
@@ -26,9 +23,7 @@ public class Thornya implements CommandExecutor {
 
 
     @Override
-    public boolean onCommand(CommandSender snd, Command cmd, String s, String[] args) {
-
-
+    public boolean onCommand(@NotNull CommandSender snd, Command cmd, @NotNull String s, String[] args) {
        // if(cooldowns.containsKey(p.getName())){
        //     if(cooldowns.get(p.getName()) > System.currentTimeMillis()){
        //         long timeleft = (cooldowns.get(p.getName()) - System.currentTimeMillis()) / 1000;
@@ -65,7 +60,7 @@ public class Thornya implements CommandExecutor {
                         int i = 1;
                         StringBuilder megafone = new StringBuilder();
                         while (i < args.length) {
-                            megafone.append(" " + args[i]);
+                            megafone.append(" ").append(args[i]);
                             i++;
                         }
                         final BukkitMessage message = BukkitMessage.create();

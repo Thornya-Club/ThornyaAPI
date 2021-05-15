@@ -1,5 +1,6 @@
 package thornyaplugin.thornyaplugin.taxas.database;
 
+import org.bukkit.entity.Player;
 import thornyaplugin.thornyaplugin.ThornyaPlugin;
 
 import java.sql.*;
@@ -17,7 +18,6 @@ public class SQLite {
     }
 
     private Connection connectPrefeitura() {
-        // SQLite connection string
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(urlPrefeitura);
@@ -28,12 +28,10 @@ public class SQLite {
     }
     ////////////////////////////////////////////////////////////////////////////////////////
     public void criarDbTaxaPrefeitura() {
-        // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS Taxas (valor real NOT NULL);";
 
         try (Connection conn =  connectPrefeitura();
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

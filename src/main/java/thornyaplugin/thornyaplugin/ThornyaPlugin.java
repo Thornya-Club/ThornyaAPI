@@ -18,9 +18,11 @@ import thornyaplugin.thornyaplugin.taxas.Economy;
 import thornyaplugin.thornyaplugin.taxas.Tax;
 import thornyaplugin.thornyaplugin.taxas.database.Mysql;
 import thornyaplugin.thornyaplugin.taxas.events.QuickShop;
+import thornyaplugin.thornyaplugin.utils.TimeFormatter;
 import thornyaplugin.thornyaplugin.vars.*;
 
 import java.io.*;
+import java.util.Objects;
 
 public final class ThornyaPlugin extends JavaPlugin {
 
@@ -55,12 +57,12 @@ public final class ThornyaPlugin extends JavaPlugin {
 
         //registrarComando("leis", new Leis(this));
         registrarComando("prefeitura", new Prefeitura(this));
-        getCommand("prefeitura").setTabCompleter(new TabPrefeitura(this));
+        Objects.requireNonNull(getCommand("prefeitura")).setTabCompleter(new TabPrefeitura(this));
         registrarComando("pagar", new Economy(this));
         registrarComando("taxa", new Economy(this));
     }
     public void registrarComando(String nome, CommandExecutor comando) {
-        getCommand(nome).setExecutor(comando);
+        Objects.requireNonNull(getCommand(nome)).setExecutor(comando);
     }
     public void registrarListener(Listener listener) {
         Bukkit.getPluginManager().registerEvents(listener, this);
@@ -85,14 +87,16 @@ public final class ThornyaPlugin extends JavaPlugin {
     public void reloadAll(){
         saveConfig();
         reloadConfig("configuration");
+        reloadConfig("prefeitura");
+        reloadConfig("translate");
     }
     public void saveConfig(){
         try {
             getFile("configuration").save(this.file);
             getFile("prefeitura").save(this.file);
             getFile("translate").save(this.file);
-        }catch (Exception e){
-
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void reloadConfig(String nomedoarquivo){

@@ -9,7 +9,7 @@ public class Staffs {
     private static ThornyaPlugin pl;
 
     public Staffs(ThornyaPlugin main){
-        this.pl = main;
+        pl = main;
     }
 
     public static ArrayList<String> getStaffs(){
