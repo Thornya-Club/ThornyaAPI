@@ -136,7 +136,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
         }
     }
 
-    private void senderTaxas(Player p, String[] args) {
+    public void senderTaxas(Player p, String[] args) {
 
         //mostra as taxas se não houver argumento
         if(args.length == 0){
