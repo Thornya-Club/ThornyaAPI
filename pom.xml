@@ -86,6 +86,15 @@
             <name>m2-dv8tion</name>
             <url>https://m2.dv8tion.net/releases</url>
         </repository>
+        <repository>
+            <id>net.essentialsx</id>
+            <name>EssentialsX</name>
+            <url>https://repo.essentialsx.net/releases/</url>
+        </repository>
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.org/repository/maven-public</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -130,15 +139,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.sacredlabyrinth.phaed.simpleclans</groupId>
+            <groupId>com.github.marcelo-mason</groupId>
             <artifactId>SimpleClans</artifactId>
-            <version>2.14.5</version> <!-- You can find the latest version at the bottom -->
-            <scope>provided</scope>
+            <version>2.10.2</version>
+            <!-- https://github.com/RoinujNosde/SimpleClans -->
         </dependency>
 		<dependency>
 			<groupId>net.essentialsx</groupId>
 			<artifactId>EssentialsX</artifactId>
 			<version>2.19.0-SNAPSHOT</version>
+            <!-- https://github.com/EssentialsX/Essentials -->
 			<scope>provided</scope>
 		</dependency>        
     </dependencies>
