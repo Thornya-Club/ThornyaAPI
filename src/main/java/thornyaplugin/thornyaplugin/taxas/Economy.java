@@ -36,10 +36,6 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         if(command.getName().equalsIgnoreCase("taxa")){
-            //if(args[0].equalsIgnoreCase("debug")){
-            //    pl.sqlitetaxas.updateValueClan(0.0F);
-            //    pl.sqlitetaxas.updateValuePrefeitura(0.0F);
-            //}
             if(args.length == 1){
 
                 if(args[0].equalsIgnoreCase("enviardatabase")){

@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import thornyaplugin.thornyaplugin.taxas.Economy;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Utils {
@@ -40,6 +42,22 @@ public class Utils {
             sb.append(candidateChars.charAt(random.nextInt(candidateChars .length())));
         }
         return sb.toString();
+
+    }
+
+    public static String formatarMoney(BigDecimal amount){
+
+        String formatado = Economy.formato.format(amount);
+
+        return "§cT" + formatado;
+
+    }
+
+    public static String formatarMoney(Float amount){
+
+        String formatado = Economy.formato.format(amount);
+
+        return "§cT" + formatado;
 
     }
 
