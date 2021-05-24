@@ -14,6 +14,8 @@ import thornyaplugin.thornyaplugin.utils.Utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class Economy extends com.earth2me.essentials.api.Economy implements CommandExecutor {
 
@@ -27,7 +29,7 @@ public class Economy extends com.earth2me.essentials.api.Economy implements Comm
         return number % 1 == 0;
     }
 
-    private final DecimalFormat formato = new DecimalFormat("#,##");
+    public static final DecimalFormat formato = new DecimalFormat("#0.00", new DecimalFormatSymbols(new Locale("en", "US")));
 
 
     @Override

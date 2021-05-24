@@ -2,6 +2,7 @@ package thornyaplugin.thornyaplugin.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import thornyaplugin.thornyaplugin.taxas.Economy;
 
 import java.util.Random;
 
