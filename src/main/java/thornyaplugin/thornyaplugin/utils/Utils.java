@@ -2,13 +2,16 @@ package thornyaplugin.thornyaplugin.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import thornyaplugin.thornyaplugin.taxas.Economy;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Random;
 
 public class Utils {
+
+    private static final DecimalFormat formato = new DecimalFormat("#0.00", new DecimalFormatSymbols(new Locale("en", "US")));
 
     public static void send(Player player, String message){
 
@@ -22,7 +25,7 @@ public class Utils {
 
     }
 
-    public String generateString(int length){
+    public static String generateString(int length){
 
         String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder sb = new StringBuilder();
@@ -33,7 +36,7 @@ public class Utils {
         return sb.toString();
 
     }
-    public String generateInt(int length){
+    public static String generateInt(int length){
 
         String candidateChars = "1234567890";
         StringBuilder sb = new StringBuilder();
@@ -47,7 +50,7 @@ public class Utils {
 
     public static String formatarMoney(BigDecimal amount){
 
-        String formatado = Economy.formato.format(amount);
+        String formatado = formato.format(amount);
 
         return "§cT" + formatado;
 
@@ -55,10 +58,12 @@ public class Utils {
 
     public static String formatarMoney(Float amount){
 
-        String formatado = Economy.formato.format(amount);
+        String formatado = formato.format(amount);
 
         return "§cT" + formatado;
 
     }
+
+
 
 }

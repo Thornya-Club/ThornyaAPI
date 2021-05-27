@@ -12,13 +12,6 @@ depend:
   - SimpleClans
   - Essentials
 commands:
-  thornya:
+  template:
     description: comandos gerais do thornya
-  leis:
-    description: comando das leis da prefeitura
-  prefeitura:
-    description: comando da prefeitura
-  taxa:
-    description: taxas do server
-  pagar:
-    description: pagar jogadores
+

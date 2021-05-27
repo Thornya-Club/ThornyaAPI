@@ -1,6 +1,3 @@
-tax-prefeitura: 0.0
-tax-supremacia: 0.0
-
 mysql:
   username: root
   host: localhost
@@ -11,7 +8,6 @@ mysql:
 #################Thornya#################
 message_reload: "&aConfigurações carregadas com sucesso."
 
-message_clearchat: "&a&lO Staff &c&l%player% &a&llimpou o chat!"
 ##colocar em mysql a staff.
 staffs:
   - "Gusttavo13"
